@@ -51,5 +51,113 @@ const DATA=[
 ['8.7','Firearm Theft','Mencuri senjata api atau gagal lapor kehilangan dalam 48 jam.','F',50,930],
 ['8.8','Negligent Storage','Menyimpan senjata sembarangan hingga dapat diakses publik.','M',30,750]
 ];
-const LIC=[['I. Firearm License',[['Pistol License',7500],['Shotgun (SG) License',10000]]],['II. Truck Driver License',[['Low Trucker License',2500],['Heavy Trucker License',5000]]]];
 const REG=['Semua pemohon wajib melengkapi formulir pengajuan.','Semua lisensi harus disetujui LSPD.','Pemohon wajib membayar biaya lisensi yang berlaku.','Pelanggaran dapat berujung pada pencabutan lisensi.'];
+
+// HALAMAN PENGAJUAN. Tiap item = satu halaman (judul, penjelasan, format surat, tombol Discord).
+const FORMS={
+senjata:{
+ judul:'Lisensi Senjata (CCW)',
+ sub:'Application for Concealed Carry Weapon (CCW) License',
+ url:'https://discord.com/channels/1559901799081836656/1561350988496117770',
+ info:['Dipakai untuk mengajukan lisensi membawa senjata api (CCW) kepada LSPD.','Pilih jenis senjata: Pistol atau Shotgun.','Nomor seri senjata diisi jika kamu sudah mendapatkan senjatanya dari Gunshop.','Pemohon menjawab pertanyaan kelayakan: apakah punya State Identification yang valid dan apakah pernah dihukum karena kejahatan kekerasan.','Pemohon wajib menulis alasan mengajukan lisensi.'],
+ harga:[['Pistol License',7500],['Shotgun (SG) License',10000]],
+ ket:[...REG,'Penyalahgunaan senjata atau pelanggaran Penal Code Los Santos berujung pada pencabutan lisensi segera dan potensi tuntutan pidana.','Dengan mengirim berkas, pemohon mengizinkan LSPD melakukan pemeriksaan kesehatan mental dan latar belakang kriminal secara menyeluruh.'],
+ tpl:`**LOS SANTOS POLICE DEPARTMENT**
+**CHIEF OF POLICE Joshua Houle**
+__**APPLICATION FOR CONCEALED CARRY WEAPON (CCW) LICENSE**__
+
+__**I. APPLICANT IDENTIFICATION**__
+> Full Name:
+> Date of Birth:
+> Current Address:
+> Phone Number:
+> Occupation:
+
+__**II. FIREARM SPECIFICATION**__
+> Weapon Type: (Pistol /Shotgun)
+> Serial Number: (Jika sudah mendapatkan senjatanya dari Gunshop)
+
+__**III. ELIGIBILITY & BACKGROUND CHECK**__
+> Do you have a valid State Identification? (Yes / No)
+> Have you ever been convicted of a violent crime? (Yes / No)
+
+__**IV. STATEMENT OF INTENT**__
+Please state your reason for requesting a CCW License:
+> (Jawaban di sini...)
+
+__**V. AUTHORIZATION & AGREEMENT**__
+I understand that any misuse of the firearm or violation of the Los Santos Penal Code will result in the immediate revocation of this license and potential criminal charges. I hereby authorize the LSPD to perform a full mental health and criminal background screening.`
+},
+event:{
+ judul:'Event Registration',
+ sub:'LSPD Event Registration: surat perizinan event',
+ url:'https://discord.com/channels/1559901799081836656/1562665325386801213',
+ info:['Dipakai untuk mendaftarkan event kepada LSPD sebagai surat perizinan.','Isi data penyelenggara: nama, faksi/organisasi, dan nomor kontak.','Isi data event: nama, tanggal dan jam, lokasi, dan deskripsi.','Pilih bantuan yang dibutuhkan dari LSPD: Police Department (PD), Traffic Control, Crowd Control, Security, atau lainnya, lalu jelaskan detailnya.','Cantumkan perkiraan jumlah peserta dan catatan tambahan.'],
+ harga:null,
+ ket:['Bagian LSPD REVIEW (Status, Reviewed By, Remarks) diisi oleh LSPD, bukan pemohon.','Status pengajuan bisa PENDING, APPROVED, atau DENIED.'],
+ tpl:`━━━━━━━━━━━━━━━━━━━━
+# 📋 LSPD — EVENT REGISTRATION
+*Los Santos Police Department*
+━━━━━━━━━━━━━━━━━━━━
+
+**I. ORGANIZER INFORMATION**
+> Organizer Name:
+> Faction / Organization:
+> Contact Number:
+
+**II. EVENT INFORMATION**
+> Event Name:
+> Event Date & Time:
+> Event Location:
+> Event Description:
+> (Explain what the event is about)
+
+**III. ASSISTANCE REQUEST**
+> Assistance Required:
+> [ ] Police Department (PD)
+> [ ] Traffic Control
+> [ ] Crowd Control
+> [ ] Security
+> [ ] Other:
+>
+> Details of Assistance:
+> (Explain what support is needed from LSPD)
+
+**IV. ADDITIONAL INFORMATION**
+> Estimated Participants:
+> Additional Notes:
+
+━━━━━━━━━━━━━━━━━━━━
+**LSPD REVIEW**
+> Status: PENDING / APPROVED / DENIED
+> Reviewed By:
+> Remarks:
+
+━━━━━━━━━━━━━━━━━━━━
+*Los Santos Police Department*
+*To Protect and To Serve*`
+},
+trucker:{
+ judul:'Lisensi Trucker',
+ sub:'Truck Driver License Application',
+ url:'https://discord.com/channels/1559901799081836656/1561352523124838410',
+ info:['Dipakai untuk mengajukan lisensi pengemudi truk kepada LSPD.','Pilih jenis lisensi: Low Trucker atau Heavy Trucker.','Pemohon menyatakan bahwa data yang diberikan benar dan bersedia mematuhi semua aturan lalu lintas yang berlaku.'],
+ harga:[['Low Trucker License',2500],['Heavy Trucker License',5000]],
+ ket:[...REG],
+ tpl:`**LOS SANTOS POLICE DEPARTMENT**
+**CHIEF OF POLICE Joshua Houle**
+
+__**TRUCK DRIVER LICENSE APPLICATION**__
+
+**I. APPLICANT INFORMATION**
+> Full Name:
+> Date of Birth:
+> Phone Number:
+
+**II. LICENSE TYPE**
+> License Type: Low Trucker / Heavy Trucker
+
+**III. DECLARATION**
+> I confirm that the information provided is accurate and agree to follow all applicable traffic laws and regulations.`
+}
+};

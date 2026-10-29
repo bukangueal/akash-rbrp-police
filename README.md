@@ -8,7 +8,7 @@ Website statis untuk kepolisian (LSPD) Rebelions Roleplay: browse pasal, kalkula
 
 - Browse 52 pasal dalam 8 kategori, dengan pencarian, filter kategori, dan filter tipe (Felony / Misdemeanor)
 - Kalkulator: pilih pasal, atur jumlah, total denda dan penjara dihitung otomatis, bisa disalin
-- Harga lisensi LSPD (Firearm dan Truck Driver)
+- Halaman pengajuan: Lisensi Senjata (CCW), Event Registration, Lisensi Trucker. Tiap halaman berisi penjelasan, biaya, ketentuan, format surat dengan tombol salin, dan tombol ke channel Discord
 - Simpan pasal favorit dan riwayat pencarian (disimpan di localStorage browser)
 - Mode terang/gelap otomatis, responsif di HP
 - Pintasan Ctrl+K untuk pencarian cepat
@@ -62,3 +62,16 @@ Navigasi memakai hash (`#pasal`, `#kalkulator`, `#lisensi`), jadi berjalan di ho
 ## Credits
 
 Rebelions Panel Code by Akash, dibuat untuk Rebelions Roleplay.
+
+## Mengedit halaman pengajuan
+
+Objek `FORMS` di `data.js` berisi tiga halaman: `senjata`, `event`, `trucker`. Tiap halaman punya:
+
+- `judul`, `sub`: judul dan subjudul
+- `info`: daftar penjelasan
+- `harga`: daftar `[nama, harga]` (isi `null` jika tidak ada biaya)
+- `ket`: daftar ketentuan
+- `url`: link channel Discord tujuan
+- `tpl`: teks format surat yang disalin pengguna
+
+Untuk mengganti link Discord atau isi format surat, cukup ubah `url` atau `tpl`.
