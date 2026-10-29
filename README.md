@@ -1,4 +1,6 @@
-# Pasal RP — Rebelions Roleplay
+# Rebelions Panel Code
+
+by Akash
 
 Website statis untuk kepolisian (LSPD) Rebelions Roleplay: browse pasal, kalkulator denda dan penjara, dan daftar harga lisensi. Tanpa framework, tanpa build, tanpa dependensi.
 
@@ -56,3 +58,7 @@ Vercel / Netlify: import repo ini, tanpa build command, output directory root.
 ## Catatan
 
 Navigasi memakai hash (`#pasal`, `#kalkulator`, `#lisensi`), jadi berjalan di hosting statis tanpa konfigurasi tambahan.
+
+## Credits
+
+Rebelions Panel Code by Akash, dibuat untuk Rebelions Roleplay.
