@@ -6,7 +6,7 @@ Website statis untuk kepolisian (LSPD) Rebelions Roleplay: browse pasal, kalkula
 
 ## Fitur
 
-- Browse 52 pasal dalam 8 kategori, dengan pencarian, filter kategori, dan filter tipe (Felony / Misdemeanor)
+- Browse 47 pasal dalam 8 kategori, dengan pencarian, filter kategori, dan filter tipe (Felony / Misdemeanor)
 - Kalkulator: pilih pasal, atur jumlah, total denda dan penjara dihitung otomatis, bisa disalin
 - Halaman pengajuan: Lisensi Senjata (CCW), Event Registration, Lisensi Trucker. Tiap halaman berisi penjelasan, biaya, ketentuan, format surat dengan tombol salin, dan tombol ke channel Discord
 - Simpan pasal favorit dan riwayat pencarian (disimpan di localStorage browser)
