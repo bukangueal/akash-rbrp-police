@@ -51,6 +51,46 @@ const DATA=[
 ['8.7','Firearm Theft','Mencuri senjata api atau gagal lapor kehilangan dalam 48 jam.','F',50,930],
 ['8.8','Negligent Storage','Menyimpan senjata sembarangan hingga dapat diakses publik.','M',30,750]
 ];
+const CATS_V={1:'Registration of Vehicle and Certificates Title',2:'Driver License',3:'Financial Responsibility Laws',4:'Rules of the Road',5:'Equipment of Vehicle',6:'Safety Regulation'};
+// VEHICLE CODE: [kode, nama, deskripsi, tipe (I/M/F), penjara, denda, catatan, dinamis(1=denda sesuai level kendaraan)]
+const VDATA=[
+['1.1','Vehicle Registration Violation','Mengemudikan atau meninggalkan kendaraan yang belum terdaftar, atau tanpa plat nomor valid.','I',0,0,'Kendaraan disita. Denda dinamis sesuai level: Motorcycles $325, Cars $650, Commercial $488, Sport $813 per 5 level (sampai Lvl 46-50).',1],
+['2.1','Driving without Valid License','Mengemudi tanpa memiliki SIM, atau dengan SIM yang telah dicabut.','M',4,0,'Kendaraan ditahan.'],
+['2.2','No Physical License in Possession','Mengemudi tanpa membawa fisik SIM saat diperiksa.','M',5,450],
+['2.3','Expired License','Mengemudi dengan status SIM yang sudah kedaluwarsa.','I',0,500],
+['2.4','Suspended License','Mengemudi saat SIM sedang dalam masa penyitaan/penangguhan.','M',4,550,'Kendaraan ditahan.'],
+['2.5','Learner’s Permit (No Ed)','Pengemudi (16-18 thn) mengemudi tanpa menyelesaikan kursus.','I',0,200,'Izin dicabut.'],
+['2.6','Learner’s Permit (No Adult)','Pengemudi (16-18 thn) mengemudi tanpa didampingi orang dewasa ber-SIM.','I',0,300,'Izin dicabut.'],
+['3.1','Driving without Insurance','Mengemudi tanpa asuransi kendaraan yang valid.','I',0,200,'Kendaraan ditahan.'],
+['4.1','Speeding (>40 MPH)','Ngebut di atas 40 MPH di area bisnis/pemukiman.','I',0,200,'+1 Poin SIM'],
+['4.2','Speeding (>65 MPH)','Ngebut di atas 65 MPH di luar area bisnis/pemukiman.','I',0,500,'+1 Poin SIM'],
+['4.3','Speeding (>90 MPH)','Ngebut di atas 90 MPH di jalan raya (Highway).','I',0,750,'+2 Poin SIM'],
+['4.4','Unsafe Speeding','Berkendara dengan kecepatan tidak wajar/berbahaya saat cuaca buruk.','I',0,200,'+2 Poin SIM'],
+['4.5','Failure to Yield','Tidak memberikan hak jalan kepada pengemudi lain di persimpangan.','I',0,350],
+['4.6','Yield to Emergency','Tidak menepi untuk memberi jalan pada kendaraan darurat (sirene/lampu menyala).','I',0,400],
+['4.7','Traffic Control Device','Melanggar rambu lalu lintas, lampu merah, atau arahan petugas.','I',0,200],
+['4.8','Illegal Parking','Parkir sembarangan (menghalangi jalan, hidran, jalur damkar, rel kereta, dll).','I',0,950,'Kendaraan disita.'],
+['4.9','Vehicular Noise','Modifikasi bising, atau klakson/sirene berlebihan.','I',0,500],
+['4.10','Illegal Hydraulics','Menggunakan sistem hidrolik saat kendaraan sedang berjalan di jalan umum.','I',0,450],
+['4.11','Unsafe Bicycle Usage','Menggunakan sepeda hingga menghalangi lalu lintas atau memicu bahaya.','I',0,500],
+['4.12','Jaywalking','Menyeberang jalan sembarangan tidak pada tempat penyeberangan (crosswalk).','I',0,250],
+['4.13','Speed Contests','Terlibat balapan liar di jalan umum.','I',0,500],
+['4.14','Illegal Truck Route','Mengemudikan truk/kendaraan berat di luar rute truk atau masuk kota tanpa izin.','I',0,1500,'Kendaraan disita.'],
+['4.15','Invalid Commercial License','Mengemudikan kendaraan komersial tanpa lisensi kelas khusus yang sah.','M',0,870,'Denda +$500 jika memicu bahaya.'],
+['5.1','Tinted Windows','Menggunakan kaca film yang menghalangi visibilitas.','I',0,195],
+['5.2','No Headlights','Tidak menyalakan lampu utama saat gelap atau cuaca buruk.','I',0,230],
+['5.3','Unsafe Vehicle','Mengemudi dengan ban pecah, lampu rusak, atau pintu/kap terbuka.','I',0,640],
+['5.4','Unauthorized Red/Blue Lights','Menggunakan lampu strobo darurat tanpa izin.','M',10,350,'Kendaraan disita hingga lampu dilepas.'],
+['6.1','No Helmet','Mengendarai atau menumpang sepeda motor tanpa helm keselamatan.','I',0,500],
+['6.2','Unlawful Towing','Menarik kendaraan lain dengan cara berbahaya atau membiarkan orang naik di atas trailer.','I',0,400],
+['6.3','Reckless Machinery','Mengemudikan alat berat (Bulldozer, Forklift, Tractor, dll) di jalan umum secara sembarangan.','I',0,250],
+['6.4','Reckless Off-Road','Membawa kendaraan Off-Road ke jalan raya umum secara sembarangan.','I',0,4100,'Kendaraan ditahan.'],
+['6.5','Unlawful Passenger Riding','Membiarkan penumpang duduk di bagasi, kap, atau bagian luar kendaraan.','I',0,250]
+];
+const KIT={P:{nama:'Penal Code',pre:'PC',cats:CATS},V:{nama:'Vehicle Code',pre:'VC',cats:CATS_V}};
+const mk=(kit,d)=>({id:kit+d[0],kit,k:d[0],nama:d[1],desc:d[2],tipe:d[3],jail:d[4],fine:d[5],note:d[6]||'',dyn:d[7]||0,cat:d[0].split('.')[0]});
+const ALL=[...DATA.map(d=>mk('P',d)),...VDATA.map(d=>mk('V',d))];
+
 const REG=['Semua pemohon wajib melengkapi formulir pengajuan.','Semua lisensi harus disetujui LSPD.','Pemohon wajib membayar biaya lisensi yang berlaku.','Pelanggaran dapat berujung pada pencabutan lisensi.'];
 
 // HALAMAN PENGAJUAN. Tiap item = satu halaman (judul, penjelasan, format surat, tombol Discord).

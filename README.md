@@ -6,7 +6,7 @@ Website statis untuk kepolisian (LSPD) Rebelions Roleplay: browse pasal, kalkula
 
 ## Fitur
 
-- Browse 47 pasal dalam 8 kategori, dengan pencarian, filter kategori, dan filter tipe (Felony / Misdemeanor)
+- Browse 79 pasal (47 Penal Code + 32 Vehicle Code) dengan tab Penal Code / Vehicle Code, dengan pencarian, filter kategori, dan filter tipe (Felony / Misdemeanor / Infraction)
 - Kalkulator: pilih pasal, atur jumlah, total denda dan penjara dihitung otomatis, bisa disalin
 - Halaman pengajuan: Lisensi Senjata (CCW), Event Registration, Lisensi Trucker. Tiap halaman berisi penjelasan, biaya, ketentuan, format surat dengan tombol salin, dan tombol ke channel Discord
 - Simpan pasal favorit dan riwayat pencarian (disimpan di localStorage browser)
@@ -75,3 +75,16 @@ Objek `FORMS` di `data.js` berisi tiga halaman: `senjata`, `event`, `trucker`. T
 - `tpl`: teks format surat yang disalin pengguna
 
 Untuk mengganti link Discord atau isi format surat, cukup ubah `url` atau `tpl`.
+
+## Vehicle Code
+
+Data ada di `VDATA` (`data.js`), formatnya sama dengan Penal Code ditambah catatan dan penanda denda dinamis:
+
+```js
+// [kode, nama, deskripsi, tipe, penjara, denda, catatan, dinamis]
+['4.1', 'Speeding (>40 MPH)', '...', 'I', 0, 200, '+1 Poin SIM'],
+```
+
+- Tipe: `'I'` Infraction, `'M'` Misdemeanor, `'F'` Felony
+- Pasal 1.1 memakai denda dinamis (`1` di kolom terakhir): di kalkulator, pilih jenis kendaraan dan level, denda dihitung otomatis
+- Catatan berformat `+N Poin SIM` otomatis dijumlahkan di kalkulator
